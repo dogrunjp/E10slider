@@ -1,5 +1,5 @@
 /*
- * 	E10Slider 0.5 - jQuery plugin - 2013.5.23
+ * 	E10Slider 0.3 - jQuery plugin - 2013.5.14
  *
  * Copyright (c) 2013 dogrun Inc.
  * Dual licensed under the MIT and GPL licenses.
@@ -14,9 +14,9 @@
 	    var event;
 	    
 	    for(j=0;j<l;j++){
-	    	$("#e10navi").append('<svg id="p_'+ j +'" xmlns="http://www.w3.org/2000/svg" class="navi"><circle cx="11" cy="11" r="8" width="22px" hight="22px" opacity="0.3" fill="red"/></svg>');
+	    	$("#e10navi").append('<img src="image/fig_navi.png" class="navi"/>');
 	    }
-	    $("#e10navi svg circle").eq(0).animate({opacity:0.8},500);
+	    
 		if (("ontouchstart" in window)) {
 　　         event = "touchstart";
             }
@@ -27,8 +27,9 @@
 			ev.preventDefault();
 			pictureStory(); 
 		});
-	    $("#e10navi svg circle").css({"fillOpacity":1});
-	    
+    
+
+	    $("#e10navi img:eq(1)").css({"opacity":0.9});
 	    function pictureStory(){
 	  		if(i < l-1){		
 	  			$(".photo:eq(0)").attr("src", opts.images[i]); 
@@ -39,16 +40,18 @@
 	  				{
 	  					duration:500,
 		  				complete:function(){
-		  					    $("#e10navi svg circle").eq(i).animate({opacity:0.2},500);
-		  					    $("#e10navi svg circle").eq(i+1).animate({opacity:0.8},500);
+		  					    $("#e10navi img").eq(i+1).animate({opacity:0.4},500);
+		  					    $("#e10navi img").eq(i+2).animate({opacity:0.9},500);
 					  			$(".photo:eq(0)").attr("src", opts.images[i+1]); 
 					  			$(".photo:eq(0)").css({opacity:"1"});
-					  		
+					  			
 					  			i++;
 					  			//setTimeout(pictureStory, opts.intvl1);
 					  	}
 				  	}
 		  		);
+		  		
+
 	  		}else if(i == l-1){
 	  			$(".photo:eq(0)").attr("src", opts.images[i]);  
 	  			$(".photo:eq(1)").attr("src", opts.images[0]);  
@@ -57,17 +60,18 @@
 	  				{
 	  					duration:500,
 		  				complete:function(){
-		  					    $("#e10navi svg circle").eq(i).animate({opacity:0.2},500);
-		  					    $("#e10navi svg circle").eq(0).animate({opacity:0.8},500);	
+		  					    $("#e10navi img").eq(i+1).animate({opacity:0.4},500);
+		  					    $("#e10navi img").eq(1).animate({opacity:0.9},500);	
 					  			$(".photo:eq(0)").attr("src", opts.images[0]);
 					  			$(".photo:eq(0)").css({opacity:"1"});
 					  			
 					  			i=0;
-					  	
+					  			/*
 					  			opts.rep --;
 						  		if(opts.rep >= 1){
-					  			//setTimeout(pictureStory, opts.intvl2);
+					  				setTimeout(pictureStory, opts.intvl2);
 					  			}
+					  			*/
 					  	}
 				  	}
 		  		);
